@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="CSS/estilos.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Acme&family=Merriweather:wght@300&family=Permanent+Marker&family=Poppins&family=Roboto+Slab&family=Sansita+Swashed:wght@300&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+	<title>Objeto</title>
+</head>
+<body>
+
+	<div id="app" class="contenedor__app">
+		<h1>Persona</h1>
+
+		<div class="contenedor__persona">
+
+
+			<div class="contenedor__inputs">
+
+				<!--  CONTENEDOR DE METODOS  -->
+				
+				<h1 class="atributos">Atributos</h1>
+				
+				<div>Genero 
+					
+					<select name="genero" v-model="persona.genero" class="generos">
+						
+						<option value="Masculino">Masculino</option>
+						
+						<option v-on:click="isGenero()" value="Femenino">Femenino</option>
+
+					</select>
+
+				</div>
+
+				<div>Nombre <input v-model="persona.nombre" type="text" disabled=""> <input v-on:click="setNombre()" type="submit" value="Modificar"></div>
+				
+				<div>Apellido <input v-model="persona.apellido" disabled type="text"> <input v-on:click="setApellido()" type="submit" value="Modificar"></div>
+				
+				<div>Edad <input v-model="persona.edad" disabled type="number"> <input v-on:click="setEdad()" type="submit" value="Modificar"></div>
+
+				<div>Salario <input v-model="persona.salarioMensual" type="number" disabled> </div>
+
+				<div v-if="persona.salarioMensual > 0">Aporte Pension <input v-model="persona.pension" type="number" disabled=""></div>
+
+				<div v-if="persona.salarioMensual > 0">Aporte Salud <input v-model="persona.salud" type="number" disabled=""></div>
+				
+				<div>Trabajo <input type="text" disabled v-model="persona.trabajo"> <input v-on:click="setEmpleo()" type="submit" value="Modificar"></div>
+
+				<div v-if="persona.bebidasCompradas.length > 0">Bebidas Compradas
+					
+					<div v-for="compras of persona.bebidasCompradas">
+						
+						<ul class="lista">
+							
+							<li> {{compras}} </li>
+
+						</ul>
+					</div>
+				</div>
+
+				<div v-if="persona.elementoComprado == true">Elementos Comprados
+					<div v-for="elemento of persona.elementosDeTecnologiaComprados">
+						<ul class="lista">
+							<li> {{elemento.nombre}}  </li>
+						</ul>
+					</div>
+				</div>
+
+				<div>Pasatiempos 
+					<div v-for="pasatiempo of persona.pasatiempos">
+						
+						<ul class="lista">
+							
+							<li> {{pasatiempo}} </li>
+
+						</ul>
+
+					</div>
+				</div>
+
+				<div>
+					<input v-on:click="modificarPasatiempo()" type="submit" value="Modificar"> <input v-on:click="agregarPasatiempo()" type="submit" value="Agregar"> <input v-on:click="eliminarPasatiempo()" type="submit" value="Eliminar">
+				</div>
+								
+				<div>Contactos 
+					<div v-for="contacto of persona.contactos">
+						<ul class="lista">
+							<li> {{contacto}} </li>
+						</ul>
+					</div>
+				</div>
+				<div>
+					<input type="submit" value="Modificar"> <input type="submit" value="Agregar"> <input type="submit" value="Eliminar">
+				</div>
+			</div>
+
+
+			<!-- CONTENEDOR DE IMAGENES  -->
+			<div class="contenedor__imagen">
+				<img class="persona__img" v-if="persona.genero === 'Femenino'" src="img/mujer.png">
+				<img class="persona__img" v-if="persona.genero === 'Masculino'" src="img/persona.png">
+			</div>
+
+
+			<!-- CONTENEDOR DE METODOS  -->
+			<div class="contenedor__inputs">
+				<h1 class="metodos">Metodos</h1>
+
+				<div v-if="persona.active == true">Saludar<input v-on:click="saludar()" type="submit" value="Llamar Metodo"></div>
+
+				<div v-if="persona.active == true">Recibir Sueldo<input v-on:click="recibirSueldo()" type="submit" value="Llamar Metodo"></div>
+
+				<div v-if="persona.active == true">Salir de Fiesta <input v-on:click="salirDeFiesta()" type="submit" value="Llamar Metodo"></div>
+
+				<div v-if="persona.salirFiesta === true"> <h2 class="titulo__tecnologia">Comprar Bebidas</h2>
+					<ul class="lista">
+
+						<li><input id="ron" type="checkbox" value="Ron">Ron: {{ bebidas.ron.gastoRon }} </li>
+
+						<li><input id="cerveza" type="checkbox" value="Cerveza">Cerveza: {{bebidas.cerveza.gastoCerveza}}  </li>
+
+						<li><input id="aguardiente" type="checkbox" value="Aguardiente">Aguardiente: {{bebidas.aguardiente.gastoAguardiente}} </li>
+
+						<li><input id="sixPack" type="checkbox" value="SixPack">SixPack: {{bebidas.sixPack.gastoSixPack}}  </li>
+
+						<li><input id="wisky" type="checkbox" value="Wisky">Wisky: {{bebidas.wisky.gastoWisky}}  </li>
+
+						<li><input id="coctel" type="checkbox" value="Coctel">Coctel: {{bebidas.coctel.gastoCoctel}}  </li>
+
+					</ul>
+					<input v-on:click="comprarBebidas()" type="submit" value="Comprar">
+				</div>
+
+				<div v-if="persona.active == true">Salir De Compras<input v-on:click="salirCompras()" type="submit" value="Llamar Metodo"></div>
+
+
+				<div v-if="this.persona.salirCompras == true">Comprar
+					
+					<select name="Electrodomesticos" id="selectElementos" v-on:click="traerElectrodomesticos()" class="electrodomesticos">
+						<option value="" selected>Electrodomesticos</option>
+						<option value="tecnologia">Tecnologia</option>
+						<option value="muebles">Muebles y Enseres</option>
+						<option value="ropa">Ropas</option>
+					</select>
+
+					<div v-if="this.persona.listaMuebles == true"><h2 class="titulo">Elementos de Muebles y Enseres</h2>
+						
+						<select name="muebles_y_enseres" id="muebles_enseres" v-on:click="mostrarMueblesYEnseres()" class="electrodomesticos">
+							<option value="" selected>Elegir</option>
+							<option value="muebles">Muebles</option>
+							<option value="enseres">Enseres</option>
+						</select>
+
+						<ol v-if="this.persona.mostrarMuebles == true" class="muebles">
+							<li class="listaElementos" v-for="mueble of electrodomesticos.mueblesYEnseres.muebles">
+								<h3 class="elementos_muebles--elemento"> {{ mueble.nombre }} </h3> <p><b>Costo:</b> {{mueble.costo}} </p> <p><b>Descripcion:</b> {{mueble.descripcion}} </p>
+							</li>
+							<div class="contendor__button">
+								<button v-on:click="comprarComputador()">Comprar</button>
+							</div>
+						</ol>
+
+
+						<ol v-if="this.persona.mostrarEnseres == true" class="enseres">
+							<li class="listaElementos" v-for="enser of electrodomesticos.mueblesYEnseres.enseres">
+								<h3 class="elementos_muebles--elemento">{{ enser.nombre }} </h3> <p><b>Costo:</b> {{ enser.costo}} </p> <p><b>Descripcion:</b> {{ enser.descripcion }} </p>
+							</li>
+							<div class="contendor__button">
+								<button v-on:click="comprarComputador()">Comprar</button>
+							</div>
+						</ol>
+					</div>
+
+					<div v-if="this.persona.listaTecnologia == true"><h2 class="titulo">Elementos de Tecnologia</h2> 
+						
+						<select name="tecnologia" id="tecnologia" class="electrodomesticos" v-on:click="mostrarElementosTecnolgia()">
+							<option value="" selected>Elegir</option>
+							<option value="computador">Computador</option>
+							<option value="celular">Celular</option>
+							<option value="televisor">Televisor</option>
+							<option value="portatil">Portatil</option>
+						</select>
+
+						<ol v-if="this.persona.mostrarComputadores == true" class="computadores">
+							<li class="listaElementos" v-for="computador of electrodomesticos.tecnologia.computadores">
+								<h3 class="elementos_tecnologia--elemento">{{ computador.nombre }}</h3><p><b>Costo:</b> {{computador.costo}}</p> <p><b>Descripcion:</b> {{computador.descripcion}} </p>
+							</li>
+							<div class="contendor__button">
+								<button v-on:click="comprarComputador()">Comprar</button>
+							</div>
+						</ol>
+
+
+						<ol v-if="this.persona.mostrarCelulares == true" class="celulares">
+							<li class="listaElementos" v-for="celular of electrodomesticos.tecnologia.celulares">
+								<h3 class="elementos_tecnologia--elemento"> {{celular.nombre}} </h3><p><b>Costo:</b>
+								{{celular.costo}} </p> <p><b>Descripcion:</b> {{celular.descripcion}} </p>
+							</li>
+							<div class="contendor__button">
+								<button v-on:click="comprarCelular()">Comprar</button>
+							</div>
+						</ol>
+
+						<ol v-if="this.persona.mostrarTelevisores == true" class="televisores">
+							<li class="listaElementos" v-for="televisor of electrodomesticos.tecnologia.televisores">
+								<h3 class="elementos_tecnologia--elemento"> {{televisor.nombre}} </h3> <p><b>Costo:</b> {{televisor.costo}} </p> <p><b>Descripcion:</b> {{televisor.descripcion}} </p>
+							</li>
+							<div class="contendor__button">
+								<button v-on:click="comprarTelevisor()">Comprar</button>
+							</div>
+						</ol>
+
+						<ol v-if="this.persona.mostrarPortatiles == true" class="portatiles">
+							<li class="listaElementos" v-for="portatil of electrodomesticos.tecnologia.portatiles">
+								<h3 class="elementos_tecnologia--elemento"> {{portatil.nombre}} </h3> <p><b>Costo:</b> {{portatil.costo}} </p> <p><b>Descripcion:</b> {{portatil.descripcion}} </p>
+							</li>
+							<div class="contendor__button">
+								<button v-on:click="comprarPortatil()">Comprar</button>
+							</div>
+						</ol>
+					</div>
+
+				</div>
+				
+
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+	<script src="JS\funcion.js">
+	//``
+	</script>
+	
+</body>
+</html>

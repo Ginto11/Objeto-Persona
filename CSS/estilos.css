@@ -1,0 +1,253 @@
+:root{
+	--color-titulo-compra: #fff;
+	--color-elemento-tecnologia: #0E34F0FF;
+	--color-elemento-mueble: #3E7908FF;
+}
+
+
+*{
+	padding: 0;
+	margin: 0;
+	font-family: "Acme";
+	color: #fff;
+}
+body{
+	background: #000;
+	/*background-image: url(../imagenes/imagen2.1.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;*/
+}
+
+body::-webkit-scrollbar{
+	width: 7px;
+	background: #00000080;
+	border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb{
+	background: #09F5E5FF;
+	width: 7px;
+	border-radius: 10px;
+}
+
+.atributos, .metodos{
+	text-align: center;
+}
+.contenedor__app{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	grid-gap: 20px;
+}
+
+.parrafos{
+	max-width: 800px;
+	margin: 0 60px;
+}
+
+.contenedor__img{
+	text-align: center;
+}
+
+.img{
+	max-width: 140px;
+}
+
+.btn__empezar{
+	text-decoration: none;
+	font-size: 30px;
+	background: #04FAF5FF;
+	border-radius: 10px;
+	border: 3px solid transparent;
+	padding: 6px;
+	color: #0A18F4FF;
+}
+
+
+.btn__empezar:visited{
+	color: #0A18F4FF;
+}
+
+.btn__empezar:hover{
+	border: 3px solid #1025EE90;
+}
+
+.contenedor__persona{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 30px;
+	flex-wrap: wrap;
+}
+
+.contenedor__inputs{
+	display: flex;
+	max-width: 400px;
+	flex-direction: column;
+	grid-gap: 10px;
+}
+ 
+ input[type="text"], .generos, input[type="number"]{
+ 	text-align: center;
+ 	width: 100px;
+ 	padding: 4px;
+ 	border-radius: 10px;
+ 	background: #fff;
+ 	border: solid 3px #08F6F4FF;
+ 	outline: none;
+ 	color: #000;
+ }
+
+.electrodomesticos{
+	text-align: center;
+ 	width: 160px;
+ 	padding: 4px;
+ 	border-radius: 10px;
+ 	background: #fff;
+ 	border: solid 3px #08F6F4FF;
+ 	outline: none;
+ 	color: #000;
+}
+
+ input[type="submit"]{
+ 	color: #000;
+ 	margin-left: 4px;
+ 	text-align: center;
+ 	padding: 4px;
+ 	border-radius: 10px;
+ 	border: 3px solid transparent;
+ 	background: #04F1FAFF;
+ 	cursor: pointer;
+ }
+
+input[type="submit"]:hover{
+	border: 3px solid #0C19F280;
+	transition: 1s ease all;
+}
+.lista{
+	margin-left: 30px;
+	margin-top: 4px;
+}
+
+input[type="checkbox"]{
+	margin-right: 10px;
+}
+
+.contenedor__imagen{
+	width: 300px;
+}
+
+.persona__img{
+	width: 100%;
+	border: 1px solid black;
+	border-radius: 300px;
+	transition: .3s ease all;
+	box-shadow: 0 0 10px #09F5E1FF inset;
+	animation-name: animar;
+	animation-duration: 3s;
+	animation-timing-function: ease;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+.persona__img:hover{
+	filter: drop-shadow(0 0 10px red);
+}
+
+@keyframes animar{
+	1%{
+		transform: scale(1);
+	}
+
+	100%{
+		transform: scale(1.02);
+	}
+}
+
+
+.titulo{
+	color: var(--color-titulo-compra);
+}
+
+.computadores{
+	border-radius: 20px;
+	border: 3px solid #F60D08FF;
+	box-shadow: 0 0 20px #404040FF inset;
+}
+
+option{
+	color: #000;
+}
+
+.celulares{
+	border-radius: 20px;
+	border: 3px solid #E816ADFF;
+	box-shadow: 0 0 20px #404040FF inset;
+}
+
+.televisores{
+	border-radius: 20px;
+	border: 3px solid #F5FE00FF;
+	box-shadow: 0 0 20px #404040FF inset;
+}
+
+.portatiles{
+	border-radius: 20px;
+	border: 3px solid #FFAC00FF;
+	box-shadow: 0 0 20px #404040FF inset;
+}
+
+.muebles{
+	border-radius: 20px;
+	border: 3px solid #F78407FF;
+	box-shadow: 0 0 20px #404040FF inset;
+}
+
+.enseres{
+	border-radius: 20px;
+	border: 3px solid #BE4081FF;
+	box-shadow: 0 0 20px #404040FF inset;
+}
+
+.elementos_tecnologia--elemento{
+	color: var(--color-elemento-tecnologia);
+}
+
+.elementos_muebles--elemento{
+	color: var(--color-elemento-mueble);
+}
+
+.contendor__button{
+	display: flex;
+	justify-content: center;
+}
+
+.contendor__button > button{
+	width: 100px;
+	height: 30px;
+	border: 3px solid transparent;
+	border-radius: 10px;
+	background: #00FFFFFF;
+	cursor: pointer;
+	color: #000;
+}
+
+.contendor__button > button:hover{
+	border: 3px solid #0C19F280;
+	transition: 1s ease all;
+}
+
+.listaElementos{
+	margin: 0 30px;
+}
+
+.listaElementos p{
+	font-size: 14px;
+}
+
+.descripcion{
+	width: 200px;
+}
+
+
